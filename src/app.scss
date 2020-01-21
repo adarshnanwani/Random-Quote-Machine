@@ -90,7 +90,7 @@ $gradientColors: (
 
 #quote-box {
   width: 40%;
-  height: 45vh;
+  padding: 10px;
   min-height: 350px;
   border: 1px solid transparent;
   display: flex;
@@ -99,7 +99,6 @@ $gradientColors: (
   justify-content: space-around;
   background: #fff;
   border-radius: 4px;
-  flex-basis: 40%;
   @include box-shadow();
 }
 
@@ -180,5 +179,4 @@ $gradientColors: (
   padding: 10px;
   border: none;
   border-radius: 4px;
-  flex-basis: 5%;
 }
