@@ -1,24 +1,184 @@
+$gradientColors: (
+  color1: (
+    #52c234,
+    #061700
+  ),
+  color2: (
+    #fe8c00,
+    #f83600
+  ),
+  color3: (
+    #00c6ff,
+    #0072ff
+  ),
+  color4: (
+    #70e1f5,
+    #ffd194
+  ),
+  color5: (
+    #556270,
+    #ff6b6b
+  ),
+  color6: (
+    #9d50bb,
+    #6e48aa
+  ),
+  color7: (
+    #780206,
+    #061161
+  ),
+  color8: (
+    #b3ffab,
+    #12fff7
+  ),
+  color9: (
+    #000000,
+    #e74c3c
+  ),
+  color10: (
+    #ff4e50,
+    #f9d423
+  ),
+  color11: (
+    #add100,
+    #7b920a
+  ),
+  color12: (
+    #fbd3e9,
+    #bb377d
+  )
+);
+
+@mixin background($color1, $color2) {
+  background: $color1; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    $color1,
+    $color2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    $color1,
+    $color2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: $color1;
+}
+
+@mixin box-shadow {
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
 .container {
-  position: relative;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  transition: all 5s ease;
   padding: 0;
   margin: 0;
+  @include background(#9d50bb, #6e48aa);
 }
 
 #quote-box {
   width: 40%;
-  height: 40vh;
-  border: 1px solid black;
+  height: 45vh;
+  min-height: 350px;
+  border: 1px solid transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  background: #fff;
+  border-radius: 4px;
+  flex-basis: 40%;
+  @include box-shadow();
+}
+
+.button {
+  font-family: "Fira Sans Condensed", sans-serif;
+  padding: 10px;
+  border: transparent;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  background: #9d50bb;
+  outline: none;
+}
+
+@each $name, $colors in $gradientColors {
+  $startColor: nth($colors, 1);
+  $endColor: nth($colors, 2);
+  .container--#{$name} {
+    @include background($startColor, $endColor);
+    transform: scale(1.1);
+  }
+  .button-background--#{$name} {
+    background: $startColor;
+  }
 }
 
 #quote {
   display: flex;
   flex-direction: column;
+  flex-basis: 70%;
+  width: 90%;
+}
+#text {
+  font-size: 3em;
+  font-family: "Dancing Script", cursive;
+  z-index: 2;
+}
+
+#loading-text {
+  font-size: 2em;
+  font-family: "Dancing Script", cursive;
+  z-index: 2;
+}
+
+#author {
+  display: flex;
+  align-self: flex-end;
+  font-family: "Fira Sans Condensed", sans-serif;
+  z-index: 2;
+  font-size: 2em;
+}
+
+#actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 10%;
+  width: 90%;
+  z-index: 2;
+}
+
+#new-quote {
+  order: 2;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#tweet-quote {
+  order: 1;
+  text-decoration: none;
+  font-size: 1em;
+}
+.promotion {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.2em;
+  background: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  flex-basis: 5%;
 }

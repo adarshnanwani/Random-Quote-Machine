@@ -1,5 +1,10 @@
 body,html {
   font-size: 14px;
   font-family: sans-serif;
-  background: #ccc;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
